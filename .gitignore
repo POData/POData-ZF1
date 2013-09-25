@@ -3,4 +3,11 @@ LICENSE.txt
 README.txt
 demos/
 extras/documentation
+.DS_Store
+.idea*
+*.iml
+vendor*
+atlassian-ide-plugin.xml
+composer.lock
+composer.phar
 
