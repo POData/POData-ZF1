@@ -5,6 +5,7 @@ namespace UnitTests\POData\OperationContext\ZF1;
 
 use POData\Common\ODataConstants;
 use POData\OperationContext\HTTPRequestMethod;
+use POData\OperationContext\IHTTPRequest;
 use POData\OperationContext\ZF1\ZF1Request;
 use Phockito;
 
@@ -24,6 +25,8 @@ class ZF1RequestTest extends \PHPUnit_Framework_TestCase
 	public function testConstructor(){
 
 		$req = new ZF1Request($this->mockRequest );
+
+		$this->assertTrue($req instanceof IHTTPRequest);
 
 	}
 
