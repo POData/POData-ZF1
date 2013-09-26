@@ -31,7 +31,7 @@ class ZF1Request implements IHTTPRequest
 	 */
 	public function getRawUrl()
 	{
-		return $this->request->getRequestUri();
+		return $this->request->getScheme() . "://" . $this->request->getHttpHost() . $this->request->getRequestUri();
 	}
 
 	/**

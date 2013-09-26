@@ -64,11 +64,23 @@ class ZF1RequestTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetRawUrl()
 	{
-		$expected = "http://someHost/SomeUrl/SomePath/" . uniqid();
+		$fakeScheme = "http";
+		$fakeHost = "somehost";
+		$fakePath = "/SomeUrl/SomePath/" . uniqid();
 
 		Phockito::when($this->mockRequest->getRequestUri())
-			->return($expected);
+			->return($fakePath);
+
+		Phockito::when($this->mockRequest->getScheme())
+			->return($fakeScheme);
+
+		Phockito::when($this->mockRequest->getHttpHost())
+			->return($fakeHost);
+
 		$req = new ZF1Request($this->mockRequest );
+
+		$expected = "$fakeScheme://$fakeHost$fakePath";
+
 
 		$actual = $req->getRawUrl();
 
