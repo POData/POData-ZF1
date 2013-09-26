@@ -128,19 +128,23 @@ class ZF1RequestTest extends \PHPUnit_Framework_TestCase
 	public function testGetQueryParameters()
 	{
 
-		$expected = array(
+		$fakeParams = array(
 			'$format' => 'json',
 			'$filter' => "Property eq '1'",
 		);
 
 		//This may be the wrong thing to mock..see notes in implementation
 		Phockito::when($this->mockRequest->getParams())
-			->return($expected);
+			->return($fakeParams);
 
 		$req = new ZF1Request($this->mockRequest );
 
 		$actual = $req->getQueryParameters();
 
+		$expected = array(
+			array('$format' => 'json' ),
+			array('$filter' => "Property eq '1'" ),
+		);
 
 		$this->assertSame($expected, $actual);
 	}

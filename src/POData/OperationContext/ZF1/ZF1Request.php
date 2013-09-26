@@ -57,16 +57,28 @@ class ZF1Request implements IHTTPRequest
 	}
 
 	/**
-	 * Split the QueryString and assigns them as array element in KEY=VALUE
+	 * Returns the Query String Parameters (QSPs) as an array of KEY-VALUE pairs.  If a QSP appears twice
+	 * it will have two entries in this array
 	 *
-	 * @return string[]
+	 * @return array[]
 	 */
 	public function getQueryParameters()
 	{
 		//TODO: the contract is more specific than this, it requires the name and values to be decoded
 		//not sure how to test that...
 		//TODO: another issue.  This may not be the right thing to return...since POData only really understands GET requests today
-		return $this->request->getParams();
+
+		//Have to convert to the stranger format known to POData that deals with multiple query strings.
+		//this makes this request a bit non compliant as it doesn't expose duplicate keys, something POData will check for
+		//instead whatever parameter was last in the query string is set.  IE
+		//odata.svc/?$format=xml&$format=json the format will be json
+		$data = array();
+		foreach($this->request->getParams() as $key => $value)
+		{
+			$data[] = array($key => $value );
+		}
+
+		return $data;
 	}
 
 	/**
