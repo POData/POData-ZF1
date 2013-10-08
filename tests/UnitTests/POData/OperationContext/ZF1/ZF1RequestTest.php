@@ -149,33 +149,6 @@ class ZF1RequestTest extends \PHPUnit_Framework_TestCase
 		$this->assertSame($expected, $actual);
 	}
 
-	public function testSetRequestAccept()
-	{
-		$header = ODataConstants::HTTPREQUEST_HEADER_ACCEPT;
 
-		$expected = "SomeHeaderValue" . uniqid();
-
-		Phockito::when($this->mockRequest->getHeader($header))
-			->return($expected);
-
-		$req = new ZF1Request($this->mockRequest );
-
-		//Get the header before to ensure it has a value
-		$actual = $req->getRequestHeader($header);
-
-		$this->assertSame($expected, $actual);
-
-
-		//Now set the new value (because $format is specified)
-		$fakeMime = "some new format" . uniqid();
-		$req->setRequestAccept($fakeMime);
-
-
-		//and ensure the retrieval is the save value
-		$actual = $req->getRequestHeader($header);
-
-
-		$this->assertSame($fakeMime, $actual);
-	}
 
 }

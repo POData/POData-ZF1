@@ -14,10 +14,6 @@ class ZF1Request implements IHTTPRequest
 	 */
 	protected $request;
 
-	/**
-	 * @var string
-	 */
-	protected $overriddenAccept;
 
 	public function __construct(\Zend_Controller_Request_Http $zendRequest  )
 	{
@@ -43,10 +39,6 @@ class ZF1Request implements IHTTPRequest
 	 */
 	public function getRequestHeader($key)
 	{
-		if($key === ODataConstants::HTTPREQUEST_HEADER_ACCEPT && !is_null($this->overriddenAccept)){
-			//Some call was made to setRequestAccept
-			return $this->overriddenAccept;
-		}
 
 		$result = $this->request->getHeader($key);
 		//Zend returns false for a missing header...POData needs a null
@@ -91,17 +83,4 @@ class ZF1Request implements IHTTPRequest
 		return new HTTPRequestMethod($this->request->getMethod());
 	}
 
-	/**
-	 * To change the request accept type header in the request.
-	 * Note: This method will be used only when client specified $format query option.
-	 * Any subsequent call to getRequestHeader("HTTP_ACCEPT") must return the value set with this call
-	 *
-	 * @param string $mime The mime value.
-	 *
-	 * @return void
-	 */
-	public function setRequestAccept($mime)
-	{
-		$this->overriddenAccept = $mime;
-	}
 }
