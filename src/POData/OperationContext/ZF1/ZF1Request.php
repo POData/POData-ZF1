@@ -15,7 +15,7 @@ class ZF1Request implements IHTTPRequest
     protected $request;
 
 
-    public function __construct(\Zend_Controller_Request_Http $zendRequest  )
+    public function __construct(\Zend_Controller_Request_Http $zendRequest)
     {
         $this->request = $zendRequest;
     }

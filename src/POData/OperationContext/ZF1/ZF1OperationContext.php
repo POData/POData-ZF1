@@ -19,7 +19,8 @@ class ZF1OperationContext implements IOperationContext
     /**
      * @param \Zend_Controller_Request_Http $request
      */
-    public function __construct(\Zend_Controller_Request_Http $request){
+    public function __construct(\Zend_Controller_Request_Http $request)
+    {
         $this->request = new ZF1Request($request);
         $this->response = new OutgoingResponse();
     }
