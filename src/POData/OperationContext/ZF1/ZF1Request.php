@@ -84,4 +84,5 @@ class ZF1Request implements IHTTPRequest
     {
         return new HTTPRequestMethod($this->request->getMethod());
     }
+
 }
