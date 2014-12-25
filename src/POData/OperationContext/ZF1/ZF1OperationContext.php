@@ -45,5 +45,4 @@ class ZF1OperationContext implements IOperationContext
     {
         return $this->request;
     }
-
 }

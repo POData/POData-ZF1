@@ -42,7 +42,9 @@ class ZF1Request implements IHTTPRequest
 
         $result = $this->request->getHeader($key);
         //Zend returns false for a missing header...POData needs a null
-        if($result === false) return null;
+        if($result === false){
+            return null;  
+        } 
 
         return $result;
 
