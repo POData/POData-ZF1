@@ -24,7 +24,8 @@
     "require-dev": {
         "hafriedlander/phockito" : "dev-master",
         "satooshi/php-coveralls": "dev-master",
-        "zendframework/zendframework1": "1.12.*"
+        "zendframework/zendframework1": "1.12.*",
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": {
